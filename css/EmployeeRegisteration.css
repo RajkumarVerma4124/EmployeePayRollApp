@@ -224,3 +224,141 @@ select {
     outline: none;
     margin-right: 15px;
 }
+
+
+/*Defined css properties for buttons and error(UC6)*/
+
+.button_container {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+
+.button {
+    font-size: 14px;
+    font-family: Roboto;
+    color: #42515F;
+    background: #E2E2E2 0% 0% no-repeat padding-box;
+    border: none;
+    font-weight: 500;
+    min-width: 140px;
+    padding: 8px 8px;
+    cursor: pointer;
+    border: 1px solid #707070;
+    text-transform: uppercase;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.button:hover {
+    box-shadow: 0px 0px 15px #111;
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+    border: none;
+    background-color: #82A70C;
+    color: white;
+}
+
+.submit_button {
+    margin-right: 30px;
+    align-items: center;
+}
+
+.cancel_button {
+    text-decoration: none;
+    text-align: center;
+    font: Roboto;
+    letter-spacing: 0px;
+    color: #42515F;
+    opacity: 1;
+}
+
+.cancel_button:hover {
+    box-shadow: 0px 0px 15px #111;
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+    background-color: rgb(157, 84, 84);
+    color: white;
+}
+
+.reset_button:hover {
+    box-shadow: 0px 0px 15px #42515F;
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+    background-color: #42515F;
+    color: white;
+}
+
+.error {
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    color: red;
+    font-style: italic;
+    font-size: 13px;
+}
+
+
+/*Defining media query(UC6)*/
+
+@media only screen and (max-width: 960px) {
+    .row-content {
+        min-width: 60px;
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+    }
+    .cancel_button {
+        margin-left: 0px;
+    }
+    .form {
+        width: 85%;
+        padding: 44px 20px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .form {
+        margin-top: 10px;
+    }
+    .row-content {
+        flex-direction: column;
+    }
+    .profile-radio-content {
+        margin: 5%;
+        flex-direction: column;
+        flex-flow: wrap;
+    }
+    .profile {
+        margin: 5%;
+    }
+    select {
+        margin-bottom: 10px;
+    }
+    .button_container {
+        flex-direction: column-reverse;
+        margin-top: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+    .buttons>button {
+        margin: 5px;
+    }
+    .button {
+        margin: 5px;
+    }
+    .form_checkboxes {
+        margin: 5px;
+    }
+}
+
+@media only screen and (max-width: 410px) {
+    .button {
+        display: block;
+        margin: 5px;
+    }
+    select {
+        display: block;
+        margin: 5px;
+    }
+}

@@ -57,12 +57,15 @@
             <div class="row-content">
                 <label class="label text label-bold" for="gender">Gender</label>
                 <div class="form_gender">
-                    <input type="radio" name="gender" id="genderMale" value="male" required>
-                    <label class="label text label-text">Male</label>
-                    <input type="radio" name="gender" id="genderFemale" value="female" required>
-                    <label class="label text label-text">Female</label>
-                    <input type="radio" name="gender" id="genderOther" value="others" required>
-                    <label class="label text label-text">Others</label>
+                    <label class="label text">
+                        <input type="radio" name="gender" id="genderMale" value="male" required>Male
+                    </label>
+                    <label class="label text">
+                        <input type="radio" name="gender" id="genderFemale" value="female" required>Female
+                    </label>
+                    <label class="label text">
+                        <input type="radio" name="gender" id="genderOther" value="others" required>Others
+                    </label>
                 </div>
             </div>
             <!--Creating the form element with input type checkbox to select department(UC4)-->
@@ -154,6 +157,18 @@
                         <option value="2017">2017</option>
                     </select>
                     <error id="errorDate" class="error" name="errorDate"></error>
+                </div>
+            </div>
+            <!--Creating the form element with notes and buttons(UC6)-->
+            <div class="row-content">
+                <label class="label text label-bold" for="notes">Notes</label>
+                <textarea rows="4" class="input" placeholder="Enter Any Notes or Comments here" id="notes" style="height: 100px;" required></textarea>
+            </div>
+            <div class="button_container">
+                <a href="./Homepage.html" class="button cancel_button">Cancel</a>
+                <div class="buttons">
+                    <button type="submit" class="submit_button button" id="submitButton">Submit</button>
+                    <button type="reset" class="reset_button button">Reset</button>
                 </div>
             </div>
         </form>
