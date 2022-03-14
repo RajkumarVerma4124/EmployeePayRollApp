@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/EmployeeRegisteration.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>Register Form</title>
 </head>
 
@@ -21,6 +22,17 @@
             </div>
         </div>
     </header>
+    <!--Creating the form element with input name(UC2)-->
+    <div class="form-content">
+        <form class="form" action="#" onsubmit="save(event);" onreset="resetForm();">
+            <span class="form-head">Employee Payroll Register</span>
+            <div class="row-content">
+                <label class="label text" for="empName">Employee Name</label>
+                <input type="text" class="input" name="empName " id="empName" placeholder="Enter Your Name Here..." required>
+                <error class="error" id="errorName"></error>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
