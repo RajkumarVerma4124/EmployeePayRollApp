@@ -27,13 +27,13 @@
         <form class="form" action="#" onsubmit="save(event);" onreset="resetForm();">
             <span class="form-head">Employee Payroll Register</span>
             <div class="row-content">
-                <label class="label text" for="empName">Employee Name</label>
+                <label class="label text label-bold" for="empName">Employee Name</label>
                 <input type="text" class="input" name="empName " id="empName" placeholder="Enter Your Name Here..." required>
                 <error class="error" id="errorName"></error>
             </div>
             <!--Creating the form element with input type radio to select profile pic(UC3)-->
             <div class="row-content">
-                <label class="label text" for="profiles">Profile Image</label>
+                <label class="label text label-bold" for="profiles">Profile Image</label>
                 <div class="profile-radio-content">
                     <label>
                         <input type="radio" name="profile" id="profile1" value="../assets/profile-images/Ellipse -1.png" required>
@@ -52,6 +52,48 @@
                         <img class="profile" id="img4" src="../assets/profile-images/Ellipse -4.png" />
                     </label>
                 </div>
+            </div>
+            <!--Creating the form element with input type radio to select gender(UC4)-->
+            <div class="row-content">
+                <label class="label text label-bold" for="gender">Gender</label>
+                <div class="form_gender">
+                    <input type="radio" name="gender" id="genderMale" value="male" required>
+                    <label class="label text label-text">Male</label>
+                    <input type="radio" name="gender" id="genderFemale" value="female" required>
+                    <label class="label text label-text">Female</label>
+                    <input type="radio" name="gender" id="genderOther" value="others" required>
+                    <label class="label text label-text">Others</label>
+                </div>
+            </div>
+            <!--Creating the form element with input type checkbox to select department(UC4)-->
+            <div class="row-content">
+                <label class="label text label-bold" for="Department">Department</label>
+                <div class="form_checkboxes">
+                    <input class="checkbox" type="checkbox" name="dept" id="hr" value="hr">
+                    <label class="text label-text" for="hr">HR</label>
+                </div>
+                <div class="form_checkboxes">
+                    <input type="checkbox" name="dept" id="sales" value="sales">
+                    <label class="text label-text" for="sales">Sales</label>
+                </div>
+                <div class="form_checkboxes">
+                    <input type="checkbox" name="dept" id="finance" value="finance">
+                    <label class="text label-text" for="finance">Finance</label>
+                </div>
+                <div class="form_checkboxes">
+                    <input type="checkbox" name="dept" id="engineer" value="engineer">
+                    <label class="text label-text" for="engineer">Engineer</label>
+                </div>
+                <div class="form_checkboxes">
+                    <input type="checkbox" name="dept" id="others" value="others">
+                    <label class="text label-text" for="others">Others</label>
+                </div>
+            </div>
+            <!--Creating the form element with input type range to select salary(UC4)-->
+            <div class="row-content ">
+                <label class="label text label-bold" for="salary">Salary</label>
+                <input type="range" style="accent-color: #82A70C;" name="salary" id="salary" class="salary" min="300000" max="500000" step="100" value="400000" required>
+                <output id="salaryOutput" class="text" value="450000">400000</output>
             </div>
         </form>
     </div>
