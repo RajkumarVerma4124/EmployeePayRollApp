@@ -207,3 +207,20 @@ input[type='radio']:checked:after {
 .salary {
     width: 70%;
 }
+
+
+/*Defined css properties for select for day, month and year(UC5)*/
+
+select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    font-size: 16px;
+    font: normal normal bold 16px Roboto;
+    color: #42515f;
+    background-color: transparent;
+    min-width: 100px;
+    outline: none;
+    margin-right: 15px;
+}
