@@ -49,7 +49,7 @@ body {
 }
 
 
-/*Defined css properties for form and input name(UC1)*/
+/*Defined css properties for form and input name(UC2)*/
 
 .form-content {
     min-height: calc(100%-100px);
@@ -133,4 +133,31 @@ body {
     color: rgb(169, 169, 169);
     opacity: 1;
     font-family: Roboto;
+}
+
+
+/*Defined css properties for form and input name(UC3)*/
+
+.profile-radio-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-radio-content>label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile {
+    width: 40px;
+    border-radius: 50%;
+    margin-left: 12px;
+    margin-right: 30px;
+}
+
+.profile:hover {
+    box-shadow: 0px 0px 15px rgb(134, 191, 19);
+    transform: scale(1.01);
+    transition-duration: 0.5s;
 }
