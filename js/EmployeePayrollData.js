@@ -67,7 +67,7 @@ class EmployeePayrollData {
         let todayDate = new Date().toLocaleDateString();
         let currentDate = date.toLocaleDateString();
         if (currentDate <= todayDate)
-            this._startDate = date;
+            this._startDate = currentDate;
         else throw "The Given Date Is Greater Than Current Date";
     }
 
@@ -82,8 +82,6 @@ class EmployeePayrollData {
 
     //Method to return string of values
     toString() {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const empDate = !this._startDate ? "undefined" : this._startDate.toLocaleDateString("en-US", options)
-        return `Employee Name : ${this._empName} \nEmployee Gender : ${this._empGender} \nProfile Pic : ${this._empProfilePic} \nEmployee Department : ${this._empDept} \nEmployee Salary : ${this._empSalary} \nEmployee Date Of Joining : ${empDate} \nEmployee Notes = ${this._empNotes}`;
+        return `Employee Name : ${this._empName} \nEmployee Gender : ${this._empGender} \nProfile Pic : ${this._empProfilePic} \nEmployee Department : ${this._empDept} \nEmployee Salary : ${this._empSalary} \nEmployee Date Of Joining : ${this._startDate} \nEmployee Notes = ${this._empNotes}`;
     }
 }

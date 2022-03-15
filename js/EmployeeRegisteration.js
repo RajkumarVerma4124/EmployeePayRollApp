@@ -41,17 +41,11 @@ const getInputValueById = (id) => {
     return document.querySelector(id).value;
 }
 
-//Arrow function to set the value by id(UC11)
-const setTextValue = (id, value) => {
-    const element = document.querySelector(id);
-    element.textContent = value;
-}
-
 //Arrow function to save employee object(UC11)
 const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
-        alert(employeePayrollData.toString());
+        createAndUpdateStorage(employeePayrollData);
     } catch (e) {
         return;
     }
@@ -74,11 +68,11 @@ const createEmployeePayroll = () => {
     let date = `${getInputValueById('#day')} ${getInputValueById('#month')} ${getInputValueById('#year')}`;
     try {
         employeePayrollData.startDate = new Date(date);
-        setTextValue('#errorDate', e)
-    } catch {
+    } catch (e) {
         setTextValue('#errorDate', e)
         throw e;
     }
+    alert(employeePayrollData.toString());
     return employeePayrollData;
 }
 
@@ -91,4 +85,22 @@ const getSelectedValues = (propertyValue) => {
             selectedItems.push(item.value);
     });
     return selectedItems;
+}
+
+//Arrow function to set the value by id(UC11)
+const setTextValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.textContent = value;
+}
+
+//Arrow function to store emp object in local storage(UC12)
+function createAndUpdateStorage(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != undefined) {
+        employeePayrollList.push(employeePayrollData);
+    } else {
+        employeePayrollList = [employeePayrollData];
+    }
+    alert("Successfully Saved Employee Data Into Local Storage");
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
 }
