@@ -41,6 +41,11 @@ const getInputValueById = (id) => {
     return document.querySelector(id).value;
 }
 
+//Arrow function to get the id methods(UC13)
+const getById = (id) => {
+    return document.querySelector(id);
+}
+
 //Arrow function to save employee object(UC11)
 const save = () => {
     try {
@@ -103,4 +108,30 @@ function createAndUpdateStorage(employeePayrollData) {
     }
     alert("Successfully Saved Employee Data Into Local Storage");
     localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
+}
+
+//Arrow function to reset the form by initializing the values to default or null(UC13)
+const resetForm = () => {
+    setValue('#empName', '');
+    setTextValue('#errorName', '');
+    unsetSelectedValues('[name=profile]');
+    unsetSelectedValues('[name=gender]');
+    unsetSelectedValues('[name=dept]');
+    setValue('#salary', '');
+    setTextValue('#salaryOutput', 400000);
+    setTextValue('#errorDate', '');
+    setValue('#notes', '');
+}
+
+//Arrow function for reset the values(UC13)
+const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value = value;
+}
+
+const unsetSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach(item => {
+        item.checked = false;
+    });
 }
