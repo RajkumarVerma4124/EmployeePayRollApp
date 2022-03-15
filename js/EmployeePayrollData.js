@@ -65,7 +65,8 @@ class EmployeePayrollData {
     set startDate(date) {
         //Givendate should not exceed todays date
         let todayDate = new Date().toLocaleDateString();
-        if (date <= todayDate)
+        let currentDate = date.toLocaleDateString();
+        if (currentDate <= todayDate)
             this._startDate = date;
         else throw "The Given Date Is Greater Than Current Date";
     }

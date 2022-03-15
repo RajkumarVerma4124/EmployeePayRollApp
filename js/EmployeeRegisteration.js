@@ -26,11 +26,69 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const date = document.querySelector('#date');
     const errorDate = document.querySelector('#errorDate');
     date.addEventListener('input', function() {
+        let startDate = `${getInputValueById('#day')} ${getInputValueById('#month')} ${getInputValueById('#year')}`;
         try {
-            (new EmployeePayrollData()).startDate = new Date(date);
+            (new EmployeePayrollData()).startDate = new Date(startDate);
             errorDate.textContent = "";
         } catch (e) {
             errorDate.textContent = e;
         }
     });
 });
+
+//Arrow function to get the input value by id(UC11)
+const getInputValueById = (id) => {
+    return document.querySelector(id).value;
+}
+
+//Arrow function to set the value by id(UC11)
+const setTextValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.textContent = value;
+}
+
+//Arrow function to save employee object(UC11)
+const save = () => {
+    try {
+        let employeePayrollData = createEmployeePayroll();
+        alert(employeePayrollData.toString());
+    } catch (e) {
+        return;
+    }
+}
+
+//Arrow function to create employee object and set the values provided by the user to object(UC11)
+const createEmployeePayroll = () => {
+    let employeePayrollData = new EmployeePayrollData();
+    try {
+        employeePayrollData.empName = getInputValueById('#empName');
+    } catch (e) {
+        setTextValue('#errorName', e)
+        throw e;
+    }
+    employeePayrollData.empProfilePic = getSelectedValues('[name=profile]').pop();
+    employeePayrollData.empGender = getSelectedValues('[name=gender]').pop();
+    employeePayrollData.empDept = getSelectedValues('[name=dept]');
+    employeePayrollData.empSalary = getInputValueById('#salary');
+    employeePayrollData.empNotes = getInputValueById('#notes');
+    let date = `${getInputValueById('#day')} ${getInputValueById('#month')} ${getInputValueById('#year')}`;
+    try {
+        employeePayrollData.startDate = new Date(date);
+        setTextValue('#errorDate', e)
+    } catch {
+        setTextValue('#errorDate', e)
+        throw e;
+    }
+    return employeePayrollData;
+}
+
+//Arrow function to get all the selected values checked by user(UC11)
+const getSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    let selectedItems = [];
+    allItems.forEach(item => {
+        if (item.checked)
+            selectedItems.push(item.value);
+    });
+    return selectedItems;
+}
