@@ -36,7 +36,7 @@ const createTableContents = () => {
             <td>₹${empPayrollData._empSalary}</td>
             <td>${empPayrollData._startDate}</td>
             <td class="td-icon">
-                <img src="../assets/icons/delete-black-18dp.svg" alt="delete" />
+                <img src="../assets/icons/delete-black-18dp.svg" alt="delete" id="${empPayrollData._empName}" onclick="remove(this)"/>
                 <img src="../assets/icons/create-black-18dp.svg" alt="edit" />
             </td>
         </tr>`
@@ -86,4 +86,17 @@ const getDept = (deptList) => {
         deptHtml = `${deptHtml}<span class="dept_label">${dept}</span>`;
     }
     return deptHtml;
+}
+
+//Arrow function to delete employee using name(UC20)
+const remove = (employee) => {
+    let empPayrollData = empPayrollList.find(empData => empData._empName == employee.id);
+    if (!empPayrollData)
+        return;
+    const index = empPayrollList.map(empData => empData._empName).indexOf(empPayrollData._empName);
+    empPayrollList.splice(index, 1);
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(empPayrollList));
+    document.querySelector('.emp_count').textContent = empPayrollList.length;
+    createTableContents();
+    window.reload();
 }
