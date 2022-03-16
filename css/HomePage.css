@@ -155,3 +155,104 @@ body {
     animation-name: bounce;
     -moz-animation-name: bounce;
 }
+
+
+/*Defined css properties for tables(UC16).*/
+
+.table-main {
+    width: 80%;
+    margin: 0 auto;
+    overflow-y: hidden;
+    border-radius: 5px;
+}
+
+.table {
+    width: 100%;
+    border-spacing: 0 8px;
+    min-width: 800px;
+}
+
+td,
+th {
+    padding: 5px 8px;
+}
+
+th {
+    background: #42515f 0% 0% no-repeat padding-box;
+    text-align: center;
+    font: normal normal normal 18px/24px Roboto;
+    letter-spacing: 0.3px;
+    color: #ffffff;
+    text-transform: uppercase;
+    border: 0px solid #dddddd;
+    opacity: 1;
+    font-size: 14px;
+    padding: 8px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+th:hover {
+    color: #82A70C;
+    font-weight: 700;
+    transition-duration: 0.1s;
+}
+
+tr:not(:first-child) {
+    background: #ffffff;
+    border: 1px solid #e3e3e3;
+    padding: 5px;
+}
+
+tr:not(:first-child):hover {
+    box-shadow: 0px 0px 15px #82A70C;
+    transform: scale(1.0001);
+    transition-duration: 0.5s;
+}
+
+td {
+    font: normal normal normal 14px/21px Roboto;
+    letter-spacing: 0.1px;
+    font-size: 13px;
+    color: #42515F;
+    text-align: center;
+}
+
+td:first-child {
+    display: flex;
+    align-items: center;
+}
+
+.td-img img:first-child {
+    margin: 10px 0;
+    margin-right: 10px;
+    margin-left: 50px;
+}
+
+.td-icon img:first-child {
+    margin-right: 10px;
+    margin-top: 2px;
+}
+
+.td-icon img {
+    cursor: pointer;
+    width: 20%;
+    height: 20%;
+}
+
+.td-img img {
+    cursor: pointer;
+    width: 22%;
+    height: 22%;
+}
+
+.dept_label {
+    background-color: #e9fea5;
+    border-radius: 40%;
+    width: fit-content;
+    margin-right: 5pX;
+    padding: 3px 10px;
+    font-size: 13px;
+    display: inline-block;
+    font-weight: 300;
+}
