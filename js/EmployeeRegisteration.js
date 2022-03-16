@@ -121,6 +121,8 @@ const resetForm = () => {
     setTextValue('#salaryOutput', 400000);
     setTextValue('#errorDate', '');
     setValue('#notes', '');
+    setTextValue('#')
+    setValue('#notes', '');
 }
 
 //Arrow function for reset the values(UC13)

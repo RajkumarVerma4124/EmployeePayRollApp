@@ -302,10 +302,10 @@ select {
 
 /*Defining media query(UC6)*/
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 1050px) {
     .row-content {
         min-width: 60px;
-        padding: 12px 12px 12px 0;
+        padding: 12px 12px 12px 0px;
         display: inline-block;
     }
     .cancel_button {
@@ -314,6 +314,10 @@ select {
     .form {
         width: 85%;
         padding: 44px 20px;
+        padding-left: 25px;
+    }
+    .form_checkboxes {
+        margin: 5px;
     }
 }
 
@@ -353,6 +357,17 @@ select {
 }
 
 @media only screen and (max-width: 410px) {
+    .button {
+        display: block;
+        margin: 5px;
+    }
+    select {
+        display: block;
+        margin: 5px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
     .button {
         display: block;
         margin: 5px;
