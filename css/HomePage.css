@@ -1,0 +1,49 @@
+/*Defined css properties for body,header,logo, image and text element for homepage(UC14)*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+}
+
+.header {
+    padding: 15px 0;
+    background-color: white;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 0px solid 82A70C;
+    width: 80%;
+    justify-content: start;
+}
+
+.logo-content>img {
+    border: 0px solid 82A70C;
+    margin-right: 5px;
+}
+
+.emp_text,
+.emp_text_payroll {
+    font: normal normal bold 20px/25px Roboto;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    color: #82A70C;
+    line-height: 20px;
+}
+
+.emp_text_payroll {
+    color: #42515F;
+}
