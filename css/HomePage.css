@@ -244,6 +244,12 @@ td:first-child {
     cursor: pointer;
     width: 22%;
     height: 22%;
+    border-radius: 50%;
+}
+
+.td-img img:hover {
+    box-shadow: 0px 0px 15px #82A70C;
+    transition-duration: 0.5s;
 }
 
 .dept_label {
