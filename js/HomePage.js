@@ -1,7 +1,16 @@
 //Added javascript to view employee payroll details in a tabular format from jS file using template literals(UC17)
+let empPayrollList;
 window.addEventListener('DOMContentLoaded', (event) => {
+    empPayrollList = getEmpPayrollDataFromStorage();
+    document.querySelector(".emp_count").textContent = empPayrollList.length;
     createTableContents();
 });
+
+//Arrow function to get the data from local storage(UC19)
+const getEmpPayrollDataFromStorage = () => {
+    return localStorage.getItem("EmployeePayrollList") ? JSON.parse(localStorage.getItem("EmployeePayrollList")) : [];
+}
+
 //Template literal
 const createTableContents = () => {
     const tableHeader = `
@@ -14,8 +23,9 @@ const createTableContents = () => {
             <th>Start date</th>
             <th>Actions</th>
         </tr>`;
+    if (empPayrollList.length == 0)
+        return;
     let tableContents = `${tableHeader}`;
-    let empPayrollList = createEmployeePayRollJSON();
     for (const empPayrollData of empPayrollList) {
         tableContents = `${tableContents}
         <tr>

@@ -35,6 +35,15 @@ body {
     margin-right: 5px;
 }
 
+a {
+    text-decoration: none;
+    font: normal normal bold 20px/25px Roboto;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    color: #82A70C;
+    line-height: 20px;
+}
+
 .emp_text,
 .emp_text_payroll {
     font: normal normal bold 20px/25px Roboto;
