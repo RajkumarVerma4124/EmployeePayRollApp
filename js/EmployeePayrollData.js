@@ -64,10 +64,12 @@ class EmployeePayrollData {
     get startDate() { return this._startDate };
     set startDate(date) {
         //Givendate should not exceed todays date
+        const options = { day: 'numeric', month: 'short', year: 'numeric' }
+        const newDate = !date ? "undefined" : date.toLocaleDateString('en-GB', options);
         let todayDate = new Date().toLocaleDateString();
         let currentDate = date.toLocaleDateString();
         if (currentDate <= todayDate)
-            this._startDate = currentDate;
+            this._startDate = newDate;
         else throw "The Given Date Is Greater Than Current Date";
     }
 
