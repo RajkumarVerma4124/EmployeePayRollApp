@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     salary.addEventListener('input', () => {
         outputSal.textContent = salary.value;
     });
-    //Setting the date to the employee object for validation(UC10)
+    //Setting the date to the employee object for validation(UC10&&UC21)
     const date = document.querySelector('#date');
     const errorDate = document.querySelector('#errorDate');
     date.addEventListener('input', function() {
@@ -88,14 +88,30 @@ const getById = (id) => {
     return document.querySelector(id);
 }
 
-//Arrow function to save employee object(UC11)
-const save = () => {
+//Arrow function to save employee and update employeeobject(UC11 && UC21)
+const save = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     try {
-        let employeePayrollData = createEmployeePayroll();
-        createAndUpdateStorage(employeePayrollData);
+        setEmployeePayrollObject();
+        createAndUpdateStorage();
+        resetForm();
+        window.location.replace(site_properties.home_page);
     } catch (e) {
         return;
     }
+}
+
+//Arrow function to set employee object with values provided by the user(UC21)
+const setEmployeePayrollObject = () => {
+    empPayrollObj._empName = getInputValueById('#empName');
+    empPayrollObj._empProfilePic = getSelectedValues('[name=profile]').pop();
+    empPayrollObj._empGender = getSelectedValues('[name=gender]').pop();
+    empPayrollObj._empDept = getSelectedValues('[name=dept]');
+    empPayrollObj._empSalary = getInputValueById('#salary');
+    empPayrollObj._empNotes = getInputValueById('#notes');
+    let date = `${getInputValueById('#day')} ${getInputValueById('#month')} ${getInputValueById('#year')}`;
+    empPayrollObj._startDate = date;
 }
 
 //Arrow function to create employee object and set the values provided by the user to object(UC11)
@@ -140,16 +156,62 @@ const setTextValue = (id, value) => {
     element.textContent = value;
 }
 
-//Arrow function to store emp object in local storage(UC12)
+//Arrow function to store and update emp object in local storage(UC12 && UC21)
 function createAndUpdateStorage(employeePayrollData) {
     let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
-    if (employeePayrollList != undefined) {
-        employeePayrollList.push(employeePayrollData);
+    if (employeePayrollList) {
+        let empPayrollData = employeePayrollList.find(empData => empData._empId == empPayrollObj._empId);
+        if (!empPayrollData)
+            employeePayrollList.push(createEmployeePayrollData());
+        else {
+            const index = employeePayrollList.map(empData => empData._empId).indexOf(empPayrollData._empId);
+            employeePayrollList.splice(index, 1, createEmployeePayrollData(empPayrollData._empId));
+        }
     } else {
-        employeePayrollList = [employeePayrollData];
+        employeePayrollList = [createEmployeePayrollData()];
     }
-    alert("Successfully Saved Employee Data Into Local Storage");
     localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
+}
+
+// Arrow function to create and update employee data(UC22)
+const createEmployeePayrollData = (id) => {
+    let employeePayrollData = new EmployeePayrollData();
+    if (!id)
+        employeePayrollData.empId = createNewEmployeeId();
+    else
+        employeePayrollData.empId = id;
+    setEmployeePayrollData(employeePayrollData);
+    return employeePayrollData;
+}
+
+//Arrow function to set the form with values the user want to edit(UC21)
+const setEmployeePayrollData = (employeePayrollData) => {
+    try {
+        employeePayrollData.empName = empPayrollObj._empName;
+    } catch (e) {
+        setTextValue('#errorName', e);
+        throw e;
+    }
+    employeePayrollData.empProfilePic = empPayrollObj._empProfilePic;
+    employeePayrollData.empGender = empPayrollObj._empGender;
+    employeePayrollData.empDept = empPayrollObj._empDept;
+    employeePayrollData.empSalary = empPayrollObj._empSalary;
+    employeePayrollData.empNotes = empPayrollObj._empNotes;
+    try {
+        employeePayrollData.startDate = new Date(empPayrollObj._startDate);
+    } catch {
+        setTextValue('#errorDate', e);
+        throw e;
+    }
+    alert(employeePayrollData.toString());
+}
+
+//Arrow function to create new emp id if its not present in local storage(UC21)
+const createNewEmployeeId = () => {
+    let empId = localStorage.getItem('EmployeeId');
+    empId = !empId ? 1 : (parseInt(empId) + 1).toString();
+    localStorage.setItem('EmployeeId', empId);
+    return empId;
 }
 
 //Arrow function to reset the form by initializing the values to default or null(UC13)
@@ -163,11 +225,9 @@ const resetForm = () => {
     setTextValue('#salaryOutput', 400000);
     setTextValue('#errorDate', '');
     setValue('#notes', '');
-    setTextValue('#')
-    setValue('#notes', '');
-    setValue('#day', 1);
-    setValue('#month', 'Jan');
-    setValue('#year', 2021);
+    setValue('#day', "3");
+    setValue('#month', "Mar");
+    setValue('#year', "2022");
 }
 
 //Arrow function for reset the values(UC13)

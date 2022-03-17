@@ -16,7 +16,7 @@ const getEmpPayrollDataFromStorage = () => {
 const createTableContents = () => {
     const tableHeader = `
         <tr>
-            <th></th>
+            <th>Profile</th>
             <th>Name</th>
             <th>Gender</th>
             <th>Department</th>
@@ -37,8 +37,8 @@ const createTableContents = () => {
             <td>₹${empPayrollData._empSalary}</td>
             <td>${empPayrollData._startDate}</td>
             <td class="td-icon">
-                <img src="../assets/icons/delete-black-18dp.svg" alt="delete" id="${empPayrollData._empName}" onclick="remove(this)"/>
-                <img src="../assets/icons/create-black-18dp.svg" alt="edit" id="${empPayrollData._empName}" onclick="update(this)"/>
+                <img src="../assets/icons/delete-black-18dp.svg" alt="delete" id="${empPayrollData._empId}" onclick="remove(this)"/>
+                <img src="../assets/icons/create-black-18dp.svg" alt="edit" id="${empPayrollData._empId}" onclick="update(this)"/>
             </td>
         </tr>`
     }
@@ -56,9 +56,9 @@ const getDept = (deptList) => {
 
 //Arrow function to delete employee using id(UC20)
 const remove = (employee) => {
-    let empPayrollData = empPayrollList.find(empData => empData._empName == employee.id);
+    let empPayrollData = empPayrollList.find(empData => empData._empId == employee.id);
     if (!empPayrollData) return;
-    const index = empPayrollList.map(empData => empData._empName).indexOf(empPayrollData._empName);
+    const index = empPayrollList.map(empData => empData._empId).indexOf(empPayrollData._empId);
     empPayrollList.splice(index, 1);
     localStorage.setItem("EmployeePayrollList", JSON.stringify(empPayrollList));
     document.querySelector('.emp_count').textContent = empPayrollList.length;
@@ -68,7 +68,7 @@ const remove = (employee) => {
 
 //Arrow function to update employee using id(UC21)
 let update = (employee) => {
-    let empPayrollData = empPayrollList.find(empData => empData._empName == employee.id);
+    let empPayrollData = empPayrollList.find(empData => empData._empId == employee.id);
     if (!empPayrollData)
         return;
     localStorage.setItem("editEmp", JSON.stringify(empPayrollData));

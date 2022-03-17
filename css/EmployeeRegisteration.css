@@ -310,6 +310,12 @@ select {
     font-size: 13px;
 }
 
+.errorDate {
+    display: flex;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
 
 /*Defining media query(UC6)*/
 

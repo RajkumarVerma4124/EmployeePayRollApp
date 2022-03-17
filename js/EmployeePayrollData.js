@@ -63,14 +63,17 @@ class EmployeePayrollData {
     //Getter and setter methods for property of startdate
     get startDate() { return this._startDate };
     set startDate(date) {
-        //Givendate should not exceed todays date
+        let now = new Date();
         const options = { day: 'numeric', month: 'short', year: 'numeric' }
         const newDate = !date ? "undefined" : date.toLocaleDateString('en-GB', options);
-        let todayDate = new Date().toLocaleDateString();
-        let currentDate = date.toLocaleDateString();
-        if (currentDate <= todayDate)
-            this._startDate = newDate;
-        else throw "The Given Date Is Greater Than Current Date";
+        //Givendate should not exceed todays date
+        if (date > now) throw "The Given Date Is Greater Than Current Date";
+        //Validating the start date should note be older than 30 days(UC22)
+        var diff = Math.abs(now.getTime() - date.getTime());
+        if (diff / (1000 * 60 * 60 * 24) > 30)
+            throw "Start Date Is Beyond 30 Days";
+        this._startDate = newDate;
+
     }
 
     //Getter and setter methods for property of notes
@@ -84,6 +87,6 @@ class EmployeePayrollData {
 
     //Method to return string of values
     toString() {
-        return `Employee Name : ${this._empName} \nEmployee Gender : ${this._empGender} \nProfile Pic : ${this._empProfilePic} \nEmployee Department : ${this._empDept} \nEmployee Salary : ${this._empSalary} \nEmployee Date Of Joining : ${this._startDate} \nEmployee Notes = ${this._empNotes}`;
+        return `Emploee Id : ${this._empId} \tEmployee Name : ${this._empName} \nEmployee Gender : ${this._empGender} \nProfile Pic : ${this._empProfilePic} \nEmployee Department : ${this._empDept} \nEmployee Salary : ${this._empSalary} \nEmployee Date Of Joining : ${this._startDate} \nEmployee Notes = ${this._empNotes}`;
     }
 }

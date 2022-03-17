@@ -226,7 +226,8 @@ td:first-child {
 .td-img img:first-child {
     margin: 10px 0;
     margin-right: 10px;
-    margin-left: 50px;
+    margin-left: 80px;
+    align-items: center;
 }
 
 .td-icon img:first-child {
@@ -242,8 +243,8 @@ td:first-child {
 
 .td-img img {
     cursor: pointer;
-    width: 22%;
-    height: 22%;
+    width: 20%;
+    height: 20%;
     border-radius: 50%;
 }
 
