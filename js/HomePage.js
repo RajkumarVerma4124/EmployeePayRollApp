@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     empPayrollList = getEmpPayrollDataFromStorage();
     document.querySelector(".emp_count").textContent = empPayrollList.length;
     createTableContents();
+    localStorage.removeItem('editEmp');
 });
 
 //Arrow function to get the data from local storage(UC19)
@@ -37,46 +38,11 @@ const createTableContents = () => {
             <td>${empPayrollData._startDate}</td>
             <td class="td-icon">
                 <img src="../assets/icons/delete-black-18dp.svg" alt="delete" id="${empPayrollData._empName}" onclick="remove(this)"/>
-                <img src="../assets/icons/create-black-18dp.svg" alt="edit" />
+                <img src="../assets/icons/create-black-18dp.svg" alt="edit" id="${empPayrollData._empName}" onclick="update(this)"/>
             </td>
         </tr>`
     }
     document.getElementById('display_container').innerHTML = tableContents;
-}
-
-//Creating json object for employee data(UC18)
-const createEmployeePayRollJSON = () => {
-    let employeePayrollList = [{
-            _empName: 'Raj Verma',
-            _empGender: 'Male',
-            _empDept: ['Developer', 'HR'],
-            _empSalary: '500000',
-            _startDate: '22 Jan 2022',
-            _empNotes: '',
-            _id: new Date().getTime() + 1,
-            _empProfilePic: '../assets/profile-images/Ellipse -5.png'
-        },
-        {
-            _empName: 'Yash Verma',
-            _empGender: 'Male',
-            _empDept: ['Developer'],
-            _empSalary: '400000',
-            _startDate: '15 Feb 2022',
-            _empNotes: '',
-            _id: new Date().getTime() + 1,
-            _empProfilePic: '../assets/profile-images/Ellipse -2.png'
-        }, {
-            _empName: 'Mansi Verma',
-            _empGender: 'Female',
-            _empDept: ['Finance'],
-            _empSalary: '300000',
-            _startDate: '31 Dec 2021',
-            _empNotes: '',
-            _id: new Date().getTime() + 1,
-            _empProfilePic: '../assets/profile-images/Ellipse -4.png'
-        },
-    ];
-    return employeePayrollList;
 }
 
 //Arrow function to get all department name(UC18)
@@ -88,15 +54,23 @@ const getDept = (deptList) => {
     return deptHtml;
 }
 
-//Arrow function to delete employee using name(UC20)
+//Arrow function to delete employee using id(UC20)
 const remove = (employee) => {
     let empPayrollData = empPayrollList.find(empData => empData._empName == employee.id);
-    if (!empPayrollData)
-        return;
+    if (!empPayrollData) return;
     const index = empPayrollList.map(empData => empData._empName).indexOf(empPayrollData._empName);
     empPayrollList.splice(index, 1);
     localStorage.setItem("EmployeePayrollList", JSON.stringify(empPayrollList));
     document.querySelector('.emp_count').textContent = empPayrollList.length;
     createTableContents();
     window.reload();
+}
+
+//Arrow function to update employee using id(UC21)
+let update = (employee) => {
+    let empPayrollData = empPayrollList.find(empData => empData._empName == employee.id);
+    if (!empPayrollData)
+        return;
+    localStorage.setItem("editEmp", JSON.stringify(empPayrollData));
+    window.location.replace(site_properties.register_page);
 }

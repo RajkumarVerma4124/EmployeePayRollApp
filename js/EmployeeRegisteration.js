@@ -1,4 +1,6 @@
-//Javascript to add set event listeners on document loading(UC10)
+//Javascript to add set event listeners on document loading(UC10&&UC21)
+let isUpdate = false;
+let empPayrollObj = {};
 window.addEventListener('DOMContentLoaded', (event) => {
     //Setting the name to the employee object for validation
     const name = document.querySelector('#empName');
@@ -34,7 +36,47 @@ window.addEventListener('DOMContentLoaded', (event) => {
             errorDate.textContent = e;
         }
     });
+    //Calling the function to check for update(UC21)
+    checkForUpdate();
 });
+
+//Arrow function to update the emp data(UC21)
+let checkForUpdate = () => {
+    const empPayrollJson = localStorage.getItem("editEmp");
+    isUpdate = empPayrollJson ? true : false;
+    if (!isUpdate) return;
+    empPayrollObj = JSON.parse(empPayrollJson);
+    setForm();
+}
+
+//Arrow function to fill the data with the emp data that we want to edit in register page(UC21)
+const setForm = () => {
+    setValue('#empName', empPayrollObj._empName);
+    setSelectedValues('[name=profile]', empPayrollObj._empProfilePic);
+    setSelectedValues('[name=gender]', empPayrollObj._empGender);
+    setSelectedValues('[name=dept]', empPayrollObj._empDept);
+    setValue('#salary', empPayrollObj._empSalary);
+    setValue('#notes', empPayrollObj._empNotes);
+    setTextValue('#salaryOutput', empPayrollObj._empSalary);
+    let date = empPayrollObj._startDate.split(" ");
+    setValue('#day', date[0]);
+    setValue('#month', date[1]);
+    setValue('#year', date[2]);
+}
+
+//Arrow function to set the values for both array and single value by id(UC21)
+const setSelectedValues = (propertyValue, value) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach(item => {
+        if (Array.isArray(value)) {
+            if (value.includes(item.value)) {
+                item.checked = true;
+            }
+        } else if (item.value == value) {
+            item.checked = true;
+        }
+    });
+}
 
 //Arrow function to get the input value by id(UC11)
 const getInputValueById = (id) => {
@@ -123,6 +165,9 @@ const resetForm = () => {
     setValue('#notes', '');
     setTextValue('#')
     setValue('#notes', '');
+    setValue('#day', 1);
+    setValue('#month', 'Jan');
+    setValue('#year', 2021);
 }
 
 //Arrow function for reset the values(UC13)
