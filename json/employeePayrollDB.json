@@ -36,19 +36,6 @@
       "_empNotes": "",
       "_empProfilePic": "../assets/profile-images/Ellipse -1.png",
       "id": 3
-    },
-    {
-      "id": "12",
-      "_empName": "Aman",
-      "_empProfilePic": "../assets/profile-images/Ellipse -5.png",
-      "_empGender": "Male",
-      "_empDept": [
-        "hr",
-        "engineer"
-      ],
-      "_empSalary": "427700",
-      "_empNotes": "Update Postings",
-      "_startDate": "5 Mar 2022"
     }
   ]
 }
