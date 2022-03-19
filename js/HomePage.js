@@ -1,15 +1,37 @@
-//Added javascript to view employee payroll details in a tabular format from jS file using template literals(UC17)
+//Added javascript to view employee payroll details in a tabular format from jS file using template literals(UC17 && UC24)
 let empPayrollList;
 window.addEventListener('DOMContentLoaded', (event) => {
-    empPayrollList = getEmpPayrollDataFromStorage();
+    if (site_properties.use_local_storage.match("true")) {
+        getEmpPayrollDataFromStorage();
+    } else {
+        getEmployeePayrollDataFromServer();
+    }
+});
+
+const processEmployeePayrollDataResponse = () => {
     document.querySelector(".emp_count").textContent = empPayrollList.length;
     createTableContents();
     localStorage.removeItem('editEmp');
-});
+}
 
 //Arrow function to get the data from local storage(UC19)
 const getEmpPayrollDataFromStorage = () => {
-    return localStorage.getItem("EmployeePayrollList") ? JSON.parse(localStorage.getItem("EmployeePayrollList")) : [];
+    empPayrollList = localStorage.getItem("EmployeePayrollList") ? JSON.parse(localStorage.getItem("EmployeePayrollList")) : [];
+    processEmployeePayrollDataResponse();
+}
+
+//Arrow function to get the data from json server(UC24)
+const getEmployeePayrollDataFromServer = () => {
+    makeServiceCall("GET", site_properties.server_url, true)
+        .then(responseText => {
+            empPayrollList = JSON.parse(responseText);
+            processEmployeePayrollDataResponse();
+        })
+        .catch(error => {
+            console.log("GET Error status: " + JSON.stringify(error));
+            empPayrollList = [];
+            processEmployeePayrollDataResponse();
+        });
 }
 
 //Template literal
