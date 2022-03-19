@@ -37,8 +37,8 @@ const createTableContents = () => {
             <td>₹${empPayrollData._empSalary}</td>
             <td>${empPayrollData._startDate}</td>
             <td class="td-icon">
-                <img src="../assets/icons/delete-black-18dp.svg" alt="delete" id="${empPayrollData._empId}" onclick="remove(this)"/>
-                <img src="../assets/icons/create-black-18dp.svg" alt="edit" id="${empPayrollData._empId}" onclick="update(this)"/>
+                <img src="../assets/icons/delete-black-18dp.svg" alt="delete" id="${empPayrollData.id}" onclick="remove(this)"/>
+                <img src="../assets/icons/create-black-18dp.svg" alt="edit" id="${empPayrollData.id}" onclick="update(this)"/>
             </td>
         </tr>`
     }
@@ -56,19 +56,19 @@ const getDept = (deptList) => {
 
 //Arrow function to delete employee using id(UC20)
 const remove = (employee) => {
-    let empPayrollData = empPayrollList.find(empData => empData._empId == employee.id);
+    let empPayrollData = empPayrollList.find(empData => empData.id == employee.id);
     if (!empPayrollData) return;
-    const index = empPayrollList.map(empData => empData._empId).indexOf(empPayrollData._empId);
+    const index = empPayrollList.map(empData => empData.id).indexOf(empPayrollData.id);
     empPayrollList.splice(index, 1);
     localStorage.setItem("EmployeePayrollList", JSON.stringify(empPayrollList));
     document.querySelector('.emp_count').textContent = empPayrollList.length;
     createTableContents();
-    window.reload();
+    window.location.reload();
 }
 
 //Arrow function to update employee using id(UC21)
 let update = (employee) => {
-    let empPayrollData = empPayrollList.find(empData => empData._empId == employee.id);
+    let empPayrollData = empPayrollList.find(empData => empData.id == employee.id);
     if (!empPayrollData)
         return;
     localStorage.setItem("editEmp", JSON.stringify(empPayrollData));

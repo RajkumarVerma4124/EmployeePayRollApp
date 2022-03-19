@@ -33,7 +33,7 @@ class EmployeePayrollData {
     get empGender() { return this._empGender };
     set empGender(gender) {
         //Pattern for gender either M or F or others
-        let genderPattern = new RegExp('^male$|^female$|^others$');
+        let genderPattern = new RegExp('^Male$|^Female$|^Others$');
         if (genderPattern.test(gender))
             this._empGender = gender;
         else
