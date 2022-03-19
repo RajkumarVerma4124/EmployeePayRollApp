@@ -88,18 +88,40 @@ const getById = (id) => {
     return document.querySelector(id);
 }
 
-//Arrow function to save employee and update employeeobject(UC11 && UC21)
+//Arrow function to save employee and update employeeobject to local storage or json server(UC11 && UC21 && UC25)
 const save = (event) => {
     event.preventDefault();
     event.stopPropagation();
     try {
         setEmployeePayrollObject();
-        createAndUpdateStorage();
-        resetForm();
-        window.location.replace(site_properties.home_page);
+        if (site_properties.use_local_storage.match("true")) {
+            createAndUpdateStorage();
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        } else {
+            createOrUpdateEmployeePayrollFromServer();
+        }
     } catch (e) {
         return;
     }
+}
+
+//Arrow function to store and update emp object in jason server(UC25)
+const createOrUpdateEmployeePayrollFromServer = () => {
+    let postURL = site_properties.server_url;
+    let methodCall = "POST";
+    if (isUpdate) {
+        methodCall = "PUT";
+        postURL = postURL + empPayrollObj.id.toString();
+    }
+    makeServiceCall(methodCall, postURL, true, empPayrollObj)
+        .then(responseText => {
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        })
+        .catch(error => {
+            throw error;
+        });
 }
 
 //Arrow function to set employee object with values provided by the user(UC21 && UC23)
